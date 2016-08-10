@@ -1,7 +1,5 @@
 let listCompletedTasks = (tasks, req, res)=>{
-	var doneTasks = tasks.filter(function(elem){
-		return elem.completed === true;
-	});
+	var doneTasks = tasks.filter( elem => elem.completed === true );
 	res.render('completed', {
 		title: 'Todo',
 		tasks: doneTasks,

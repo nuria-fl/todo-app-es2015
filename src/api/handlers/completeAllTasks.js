@@ -1,5 +1,5 @@
 let completeAllTasks = (tasks, req, res)=>{
-	tasks.forEach(function(elem){
+	tasks.forEach( elem => {
 		elem.completed = true;
 		elem.completedDate = new Date();
 	});

@@ -1,7 +1,7 @@
 let deleteTask = (tasks, req, res)=>{
 	var taskId = parseInt(req.query.id);
 	var itemToDelete = null;
-	tasks.forEach(function(elem, i){
+	tasks.forEach((elem, i) => {
 		if(elem.id === taskId){
 			itemToDelete = i;
 		}
