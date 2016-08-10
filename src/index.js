@@ -23,7 +23,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', api());
 
 app.listen(PORT, function() {
-	console.log("Listening on port " + PORT)
+	console.log("Listening on port " + PORT);
 });
 
 export default app;
