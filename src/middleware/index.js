@@ -1,10 +1,9 @@
-let funcs = {};
-var tasks = [];
-var counter = 0;
+let tasks = {};
+let arrTasks = [];
+let counter = 0;
 
-// add middleware here
-funcs.listTasks = (req, res)=>{
-	var toDoTasks = tasks.filter(function(elem){
+tasks.listTasks = (req, res)=>{
+	var toDoTasks = arrTasks.filter(function(elem){
 		return elem.completed === false;
 	});
 	res.render('index', {
@@ -12,53 +11,53 @@ funcs.listTasks = (req, res)=>{
 		tasks: toDoTasks,
 		currentUrl: req.url
 	});
-}
+};
 
-funcs.newTask = (req, res)=>{
+tasks.newTask = (req, res)=>{
 	var newTask = {
 		id: ++counter,
 		name: req.body.name,
 		createdDate: new Date(),
 		completed: false
 	};
-	tasks.push(newTask);
+	arrTasks.push(newTask);
 	
 	res.redirect('/');
-}
+};
 
-funcs.deleteTask = (req, res)=>{
+tasks.deleteTask = (req, res)=>{
 	var taskId = parseInt(req.query.id);
 	var itemToDelete = null;
-	tasks.forEach(function(elem, i){
+	arrTasks.forEach(function(elem, i){
 		if(elem.id === taskId){
 			itemToDelete = i;
 		}
 	});
-	tasks.splice(itemToDelete, 1);
+	arrTasks.splice(itemToDelete, 1);
 	res.end();
-}
+};
 
-funcs.completeTask = (req, res)=>{
+tasks.completeTask = (req, res)=>{
 	var taskId = parseInt(req.query.id);
-	tasks.forEach(function(elem){
+	arrTasks.forEach(function(elem){
 		if(elem.id === taskId){
 			elem.completed = true;
 			elem.completedDate = new Date();
 		}
 	});
 	res.end();
-}
+};
 
-funcs.completeAllTasks = (req, res)=>{
-	tasks.forEach(function(elem){
+tasks.completeAllTasks = (req, res)=>{
+	arrTasks.forEach(function(elem){
 		elem.completed = true;
 		elem.completedDate = new Date();
 	});
 	res.end();
-}
+};
 
-funcs.listCompletedTasks = (req, res)=>{
-	var doneTasks = tasks.filter(function(elem){
+tasks.listCompletedTasks = (req, res)=>{
+	var doneTasks = arrTasks.filter(function(elem){
 		return elem.completed === true;
 	});
 	res.render('completed', {
@@ -66,6 +65,6 @@ funcs.listCompletedTasks = (req, res)=>{
 		tasks: doneTasks,
 		currentUrl: req.url
 	});
-}
+};
 
-export default funcs;
+export default tasks;

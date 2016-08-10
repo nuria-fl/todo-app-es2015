@@ -1,16 +1,16 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import funcs from '../middleware/index';
+import tasks from '../middleware/index';
 
 export default () => {
 	let api = Router();
-	
-	api.get('/', funcs.listTasks);
-	api.post('/', funcs.newTask );
-	api.put('/', funcs.completeTask);
-	api.delete('/', funcs.deleteTask);
-	api.put('/alldone', funcs.completeAllTasks);
-	api.get('/completed', funcs.listCompletedTasks);
+
+	api.get( '/', tasks.listTasks);
+	api.post( '/', tasks.newTask );
+	api.put( '/', tasks.completeTask );
+	api.delete( '/', tasks.deleteTask );
+	api.put( '/alldone', tasks.completeAllTasks );
+	api.get( '/completed', tasks.listCompletedTasks );
 
 	return api;
-}
+};
