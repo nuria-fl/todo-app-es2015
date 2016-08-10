@@ -1,16 +1,23 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
-import tasks from '../middleware/index';
+import listTasks from './handlers/listTasks';
+import newTask from './handlers/newTask';
+import completeTask from './handlers/completeTask';
+import deleteTask from './handlers/deleteTask';
+import completeAllTasks from './handlers/completeAllTasks';
+import listCompletedTasks from './handlers/listCompletedTasks';
 
 export default () => {
 	let api = Router();
 
-	api.get( '/', tasks.listTasks);
-	api.post( '/', tasks.newTask );
-	api.put( '/', tasks.completeTask );
-	api.delete( '/', tasks.deleteTask );
-	api.put( '/alldone', tasks.completeAllTasks );
-	api.get( '/completed', tasks.listCompletedTasks );
+	var arrTasks = [];
+
+	api.get( '/', listTasks.bind(null, arrTasks) );
+	api.post( '/', newTask.bind(null, arrTasks) );
+	api.put( '/', completeTask.bind(null, arrTasks) );
+	api.delete( '/', deleteTask.bind(null, arrTasks) );
+	api.put( '/alldone', completeAllTasks.bind(null, arrTasks) );
+	api.get( '/completed', listCompletedTasks.bind(null, arrTasks) );
 
 	return api;
 };

@@ -1,10 +1,11 @@
-import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
 import jade from 'jade';
 // import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+
+let PORT = process.env.PORT || 3000;
 
 let app = express();
 
@@ -21,6 +22,8 @@ app.use(express.static(__dirname + '/public'));
 // api router
 app.use('/', api());
 
-app.listen(process.env.PORT || '3000');
+app.listen(PORT, function() {
+	console.log("Listening on port " + PORT)
+});
 
 export default app;
