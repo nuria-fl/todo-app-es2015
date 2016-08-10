@@ -32,6 +32,8 @@
     "compression": "^1.5.2",
     "cors": "^2.7.1",
     "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "moment": "^2.14.1",
     "resource-router-middleware": "^0.5.1"
   },
   "devDependencies": {

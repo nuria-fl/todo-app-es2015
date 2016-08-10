@@ -1,0 +1,14 @@
+extend layout
+
+block content
+    h2 Completed tasks
+    if !tasks.length
+        p No tasks
+    ul.list-group
+        each task in tasks
+            if task.completed
+                li.list-group-item
+                    .task-desc.done
+                        | #{task.name} 
+                        em Completed on #{moment(task.completedDate).format('MMMM Do YYYY, h:mm a')} 
+                    
